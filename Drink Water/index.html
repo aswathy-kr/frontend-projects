@@ -14,39 +14,46 @@
 		<title>Drink Water</title>
 	</head>
 	<body>
-		<h1>Drink Water</h1>
-		<h3>Goal: 2 Litres</h3>
-		<strong class="text" id="banner"></strong>
+		<div class="container">
+			<h1>Drink Water</h1>
+			<h3>Goal: 2 Litres</h3>
+			<strong class="text" id="banner"></strong>
 
-		<div class="cup">
-			<div class="remained" id="remained">
-				<span id="liters"></span>
-				<small>Remained</small>
+			<div class="cup">
+				<div class="remained" id="remained">
+					<span id="liters"></span>
+					<small>Remained</small>
+				</div>
+
+				<div class="percentage" id="percentage"></div>
 			</div>
 
-			<div class="percentage" id="percentage"></div>
+			<p class="text">Select the volume of water that you have drank below</p>
+
+			<div class="cups">
+				<div class="cup-box">
+					<div class="cup cup-small">250 ml</div>
+					<div class="btn-list">
+						<button class="single-btn" id="add-250">Add</button>
+						<button class="single-btn" id="remove-250">Remove</button>
+					</div>
+				</div>
+				<div class="cup-box">
+					<div class="cup cup-small">500 ml</div>
+					<div class="btn-list">
+						<button class="single-btn" id="add-500">Add</button>
+						<button class="single-btn" id="remove-500">Remove</button>
+					</div>
+				</div>
+				<div class="cup-box">
+					<div class="cup cup-small">1000 ml</div>
+					<div class="btn-list">
+						<button class="single-btn" id="add-1l">Add</button>
+						<button class="single-btn" id="remove-1l">Remove</button>
+					</div>
+				</div>
+			</div>
 		</div>
-
-		<p class="text">Select the volume of water that you have drank below</p>
-
-		<div class="cups">
-			<div>
-				<div class="cup cup-small">250 ml</div>
-				<button class="single-btn" id="add-250">Add</button>
-				<button class="single-btn" id="remove-250">Remove</button>
-			</div>
-			<div>
-				<div class="cup cup-small">500 ml</div>
-				<button class="single-btn" id="add-500">Add</button>
-				<button class="single-btn" id="remove-500">Remove</button>
-			</div>
-			<div>
-				<div class="cup cup-small">1000 ml</div>
-				<button class="single-btn" id="add-1l">Add</button>
-				<button class="single-btn" id="remove-1l">Remove</button>
-			</div>
-		</div>
-
 		<script src="script.js"></script>
 	</body>
 </html>

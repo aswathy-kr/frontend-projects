@@ -1,6 +1,6 @@
 const totalVolume = 2000; // 2l of total water to be drunken
-let currentVolume = 0;
-let overflow = false;
+let currentVolume = 0; // updated volume
+let overflow = false; // if overflow happens
 const smallCups = document.querySelectorAll(".cup-small");
 const liters = document.querySelector("#liters");
 const percentage = document.querySelector("#percentage");
@@ -16,13 +16,15 @@ const add_btn_grp = [add_250_btn, add_500_btn, add_1l_btn];
 const remove_btn_grp = [remove_250_btn, remove_500_btn, remove_1l_btn];
 
 add_btn_grp.forEach((button) => {
-	let btnValue = parseInt(button.previousElementSibling.innerText);
+	let btnValue = parseInt(
+		button.parentElement.previousElementSibling.innerText
+	);
 	button.addEventListener("click", () => addVolume(btnValue));
 });
 
 remove_btn_grp.forEach((button) => {
 	let btnValue = parseInt(
-		button.previousElementSibling.previousElementSibling.innerText
+		button.parentElement.previousElementSibling.innerText
 	);
 	console.log(btnValue);
 	button.addEventListener("click", (button) => reduceVolume(btnValue));
@@ -30,18 +32,21 @@ remove_btn_grp.forEach((button) => {
 
 updateBigCup(currentVolume);
 
+// Add volume function when user drinks water
 function addVolume(increment) {
 	currentVolume += increment;
 	console.log("Current volume", currentVolume);
 	updateBigCup(currentVolume);
 }
 
+// Reduce volume function when user makes a correction
 function reduceVolume(decrement) {
 	currentVolume -= decrement;
 	console.log("Current volume", currentVolume);
 	updateBigCup(currentVolume);
 }
 
+// The text to be shown for each app update
 function updateBanner() {
 	console.log(percentage.style.height);
 	if (percentage.style.height === "330px" && overflow) {
@@ -52,18 +57,21 @@ function updateBanner() {
 		} L !`;
 		add_btn_grp.forEach((button) => {
 			button.disabled = true;
+			button.style.cursor = "no-drop";
 		});
 	} else if (percentage.style.height === "330px") {
 		banner.style.visibility = "visible";
 		banner.innerText = "You have achieved your drinking goal for the day!!";
 		add_btn_grp.forEach((button) => {
 			button.disabled = true;
+			button.style.cursor = "no-drop";
 		});
 	} else if (percentage.style.height === "0px") {
 		banner.style.visibility = "visible";
 		banner.innerText = "Your glass is empty! Please drink some water !!";
 		remove_btn_grp.forEach((button) => {
 			button.disabled = true;
+			button.style.cursor = "no-drop";
 		});
 	} else {
 		banner.style.visibility = "hidden";
@@ -77,6 +85,7 @@ function updateBanner() {
 	}
 }
 
+// Update the filled and remaining volume in the big cup
 function updateBigCup(currentVolume) {
 	if (!currentVolume) {
 		percentage.style.visibility = "hidden";

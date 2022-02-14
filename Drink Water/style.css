@@ -13,21 +13,32 @@
 
 body {
 	background-color: #3494e4;
+}
+
+.container {
 	color: #fff;
 	font-family: "Montserrat", sans-serif;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	margin-bottom: 40px;
+	margin: 0 24px 40px;
 }
 
 h1 {
-	margin: 10px 0 0;
+	margin: 12px 0 0;
+	text-align: center;
 }
 
 h3 {
 	font-weight: 400;
 	margin: 10px 0;
+	text-align: center;
+}
+
+.text {
+	text-align: center;
+	margin: 0 12px 12px;
+	color: azure;
 }
 
 .cup {
@@ -44,30 +55,25 @@ h3 {
 }
 
 .cup.cup-small {
+	position: relative;
+	left: 50px;
 	width: 50px;
 	height: 95px;
 	border-radius: 0 0 15px 15px;
-	background-color: rgba(255, 255, 255, 0.9);
-	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.7);
 	font-size: 14px;
-	align-items: center;
 	justify-content: center;
 	text-align: center;
 	transition: 0.3s ease;
-	margin: 5px;
-}
-
-.cup.cup-small.full {
-	background-color: var(--fill-color);
-	color: #fff;
+	margin: 12px;
 }
 
 .cups {
 	display: flex;
-	flex-wrap: wrap;
+	flex-direction: row;
 	align-items: center;
 	justify-content: center;
-	width: 280px;
+	gap: 24px 48px;
 }
 
 .remained {
@@ -81,17 +87,17 @@ h3 {
 }
 
 .remained span {
-	font-size: 20px;
+	font-size: 24px;
 	font-weight: bold;
 }
 
 .remained small {
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .percentage {
 	background-color: var(--fill-color);
-	font-size: 30px;
+	font-size: 28px;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -100,13 +106,20 @@ h3 {
 	transition: 0.3s ease;
 }
 
-.text {
-	text-align: center;
-	margin: 0 0 5px;
-	color: azure;
+.btn-list {
+	display: flex;
+	justify-content: center;
+	gap: 18px;
 }
 
 .single-btn {
 	padding: 12px;
-	border-radius: 12%;
+	border-radius: 12px;
+	cursor: pointer;
+}
+
+@media screen and (max-width: 720px) {
+	.cups {
+		flex-direction: column;
+	}
 }
