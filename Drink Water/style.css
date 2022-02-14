@@ -41,6 +41,13 @@ h3 {
 	color: azure;
 }
 
+.cup-box {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .cup {
 	background-color: #fff;
 	border: 4px solid var(--border-color);
@@ -55,8 +62,8 @@ h3 {
 }
 
 .cup.cup-small {
-	position: relative;
-	left: 40px;
+	/* position: relative;
+	left: 40px; */
 	width: 50px;
 	height: 95px;
 	border-radius: 0 0 15px 15px;
@@ -114,9 +121,17 @@ h3 {
 }
 
 .single-btn {
-	padding: 12px;
-	border-radius: 12px;
+	padding: 12px 16px;
+	border-radius: 4px;
 	cursor: pointer;
+	outline: none;
+	border: none;
+	min-width: 120px;
+}
+
+.single-btn.btn-danger {
+	background-color: #e02218;
+	color: #fff;
 }
 
 @media screen and (max-width: 720px) {
