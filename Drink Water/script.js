@@ -79,7 +79,8 @@ function updateBanner() {
 			button.style.cursor = "no-drop";
 		});
 	} else {
-		banner.style.visibility = "hidden";
+		banner.style.visibility = "visible";
+		banner.innerText = `You have drank ${currentVolume / 1000} L `;
 		overflow = false;
 		add_btn_grp.forEach((button) => {
 			button.disabled = false;
