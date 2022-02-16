@@ -1,4 +1,4 @@
-const totalVolume = 2000; // 2l of total water to be drunken
+const totalVolume = 3000; // 3l of total water to be drunken
 let currentVolume = 0; // updated volume
 let overflow = false; // if overflow happens
 const smallCups = document.querySelectorAll(".cup-small");
@@ -33,6 +33,11 @@ updateBigCup(currentVolume);
 
 // Add volume function when user drinks water
 function addVolume(increment) {
+	if (increment > totalVolume - currentVolume) {
+		banner.style.visibility = "visible";
+		banner.innerText = "You cannot add more water than your goal !!";
+		return;
+	}
 	currentVolume += increment;
 	console.log("Current volume", currentVolume);
 	updateBigCup(currentVolume);
@@ -99,7 +104,7 @@ function updateBigCup(currentVolume) {
 		percentage.style.visibility = "hidden";
 		percentage.style.height = 0;
 		console.log("Initial volume", currentVolume);
-		liters.innerText = `${2 - currentVolume / 1000} L`;
+		liters.innerText = `${(totalVolume - currentVolume) / 1000} L`;
 	} else if (currentVolume > totalVolume) {
 		percentage.style.visibility = "visible";
 		percentage.style.height = "330px";
@@ -107,14 +112,7 @@ function updateBigCup(currentVolume) {
 		remained.style.visibility = "hidden";
 		remained.style.height = 0;
 		overflow = true;
-	}
-	// else if (currentVolume < 0) {
-	// 	percentage.style.visibility = "hidden";
-	// 	percentage.style.height = 0;
-	// 	liters.innerText = "2 L";
-	// 	currentVolume = 0;
-	// }
-	else if (currentVolume === totalVolume) {
+	} else if (currentVolume === totalVolume) {
 		percentage.style.visibility = "visible";
 		percentage.style.height = "330px";
 		percentage.innerText = "100%";
@@ -124,10 +122,12 @@ function updateBigCup(currentVolume) {
 	} else {
 		percentage.style.visibility = "visible";
 		percentage.style.height = `${(currentVolume / totalVolume) * 330}px`;
-		percentage.innerText = `${(currentVolume / totalVolume) * 100}%`;
+		percentage.innerText = `${((currentVolume / totalVolume) * 100).toFixed(
+			2
+		)}%`;
 		remained.style.visibility = "visible";
 		remained.style.height = "12px";
-		liters.innerText = `${2 - currentVolume / 1000} L`;
+		liters.innerText = `${(totalVolume - currentVolume) / 1000} L`;
 	}
 	updateBanner();
 }
