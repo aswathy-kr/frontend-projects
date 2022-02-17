@@ -33,11 +33,11 @@ updateBigCup(currentVolume);
 
 // Add volume function when user drinks water
 function addVolume(increment) {
-	if (increment > totalVolume - currentVolume) {
-		banner.style.visibility = "visible";
-		banner.innerText = "You cannot add more water than your goal !!";
-		return;
-	}
+	// if (increment > totalVolume - currentVolume) {
+	// 	banner.style.visibility = "visible";
+	// 	banner.innerText = "You cannot add more water than your goal !!";
+	// 	return;
+	// }
 	currentVolume += increment;
 	console.log("Current volume", currentVolume);
 	updateBigCup(currentVolume);
@@ -45,30 +45,32 @@ function addVolume(increment) {
 
 // Reduce volume function when user makes a correction
 function reduceVolume(decrement) {
-	if (decrement > currentVolume) {
-		banner.style.visibility = "visible";
-		banner.innerText = "You cannot reduce more water than you have drank !!";
-	} else {
-		currentVolume -= decrement;
-		console.log("Current volume", currentVolume);
-		updateBigCup(currentVolume);
-	}
+	// if (decrement > currentVolume) {
+	// 	banner.style.visibility = "visible";
+	// 	banner.innerText = "You cannot reduce more water than you have drank !!";
+	// } else {
+	currentVolume -= decrement;
+	console.log("Current volume", currentVolume);
+	updateBigCup(currentVolume);
+	//}
 }
 
 // The text to be shown for each app update
 function updateBanner() {
-	console.log(percentage.style.height);
-	if (percentage.style.height === "330px" && overflow) {
-		console.log(overflow);
-		banner.style.visibility = "visible";
-		banner.innerText = `You have over achieved your drinking goal by ${
-			(currentVolume - totalVolume) / 1000
-		} L !`;
-		add_btn_grp.forEach((button) => {
-			button.disabled = true;
-			button.style.cursor = "no-drop";
-		});
-	} else if (percentage.style.height === "330px") {
+	let remainingVolume = totalVolume - currentVolume;
+	console.log("Remaining volume", remainingVolume);
+	// if (percentage.style.height === "330px" && overflow) {
+	// 	console.log(overflow);
+	// 	banner.style.visibility = "visible";
+	// 	banner.innerText = `You have over achieved your drinking goal by ${
+	// 		(currentVolume - totalVolume) / 1000
+	// 	} L !`;
+	// 	add_btn_grp.forEach((button) => {
+	// 		button.disabled = true;
+	// 		button.style.cursor = "no-drop";
+	// 	});
+	// }
+	if (percentage.style.height === "330px") {
 		banner.style.visibility = "visible";
 		banner.innerText = "You have achieved your drinking goal for the day!!";
 		add_btn_grp.forEach((button) => {
@@ -88,12 +90,29 @@ function updateBanner() {
 		banner.innerText = `You have drank ${currentVolume / 1000} L `;
 		overflow = false;
 		add_btn_grp.forEach((button) => {
-			button.disabled = false;
-			button.style.cursor = "pointer";
+			let btnValue = parseInt(
+				button.parentElement.previousElementSibling.innerText
+			);
+			console.log(btnValue);
+			if (remainingVolume >= btnValue) {
+				button.disabled = false;
+				button.style.cursor = "pointer";
+			} else {
+				button.disabled = true;
+				button.style.cursor = "no-drop";
+			}
 		});
 		remove_btn_grp.forEach((button) => {
-			button.disabled = false;
-			button.style.cursor = "pointer";
+			let btnValue = parseInt(
+				button.parentElement.previousElementSibling.innerText
+			);
+			if (btnValue <= currentVolume) {
+				button.disabled = false;
+				button.style.cursor = "pointer";
+			} else {
+				button.disabled = true;
+				button.style.cursor = "no-drop";
+			}
 		});
 	}
 }
@@ -105,14 +124,16 @@ function updateBigCup(currentVolume) {
 		percentage.style.height = 0;
 		console.log("Initial volume", currentVolume);
 		liters.innerText = `${(totalVolume - currentVolume) / 1000} L`;
-	} else if (currentVolume > totalVolume) {
-		percentage.style.visibility = "visible";
-		percentage.style.height = "330px";
-		percentage.innerText = "100%";
-		remained.style.visibility = "hidden";
-		remained.style.height = 0;
-		overflow = true;
-	} else if (currentVolume === totalVolume) {
+	}
+	// else if (currentVolume > totalVolume) {
+	// 	percentage.style.visibility = "visible";
+	// 	percentage.style.height = "330px";
+	// 	percentage.innerText = "100%";
+	// 	remained.style.visibility = "hidden";
+	// 	remained.style.height = 0;
+	// 	overflow = true;
+	// }
+	else if (currentVolume === totalVolume) {
 		percentage.style.visibility = "visible";
 		percentage.style.height = "330px";
 		percentage.innerText = "100%";
@@ -122,9 +143,10 @@ function updateBigCup(currentVolume) {
 	} else {
 		percentage.style.visibility = "visible";
 		percentage.style.height = `${(currentVolume / totalVolume) * 330}px`;
-		percentage.innerText = `${((currentVolume / totalVolume) * 100).toFixed(
-			2
-		)}%`;
+		let innerPercentage = (currentVolume / totalVolume) * 100;
+		percentage.innerText = `${
+			innerPercentage % 1 === 0 ? innerPercentage : innerPercentage.toFixed(2) // Checking for decimal or integer
+		}%`;
 		remained.style.visibility = "visible";
 		remained.style.height = "12px";
 		liters.innerText = `${(totalVolume - currentVolume) / 1000} L`;
