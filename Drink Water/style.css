@@ -134,6 +134,10 @@ h3 {
 	color: #fff;
 }
 
+.single-btn.btn-danger:disabled {
+	background-color: #da6963;
+}
+
 @media screen and (max-width: 720px) {
 	.cups {
 		flex-direction: column;
