@@ -22,6 +22,7 @@ function generateJoke() {
 				.then((data) => {
 					resObj.joke = data.joke;
 					resObj.poweredBy = "ICanHazDadJokes.com";
+					console.log("from dad", resObj);
 					resolve(resObj);
 				})
 				.catch((err) => reject(err));
@@ -36,6 +37,7 @@ function generateJoke() {
 				.then((data) => {
 					resObj.joke = data.value.joke;
 					resObj.poweredBy = "The Internet Chuck Norris Database Jokes";
+					console.log("from icdb", resObj);
 					resolve(resObj);
 				})
 				.catch((err) => reject(err));
@@ -45,7 +47,7 @@ function generateJoke() {
 	const finalJoke = Promise.any([dadJoke, icndbJoke]);
 	finalJoke
 		.then((res) => {
-			console.log(res);
+			console.log("final joke", res);
 			jokeBox.innerHTML = res.joke;
 			poweredBy.innerHTML = `Powered by ${res.poweredBy}`;
 		})
