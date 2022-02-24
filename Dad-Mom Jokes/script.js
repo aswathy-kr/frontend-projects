@@ -31,7 +31,7 @@ function generateJoke() {
 	const icndbJoke = new Promise((resolve, reject) => {
 		setTimeout(() => {
 			axios
-				.get("http://api.icndb.com/jokes/random")
+				.get("https://api.icndb.com/jokes/random")
 				.then((res) => res.data)
 				.then((data) => {
 					resObj.joke = data.value.joke;
