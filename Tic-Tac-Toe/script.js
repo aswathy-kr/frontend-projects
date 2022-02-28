@@ -170,7 +170,7 @@ function minimax(newBoard, player) {
 			}
 		}
 	}
-	console.log("Array of moves ", moves);
+	//console.log("Array of moves ", moves);
 	//console.log("Best move ", moves[bestMove]);
 	return moves[bestMove];
 }
