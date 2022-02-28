@@ -14,7 +14,6 @@ td {
 	width: 100px;
 	text-align: center;
 	vertical-align: middle;
-	/* font-family: "Comic Sans MS", cursive, sans-serif; */
 	font-size: 70px;
 	cursor: pointer;
 }
@@ -77,7 +76,7 @@ table tr td:last-child {
 
 .selectSym button,
 #initiator button {
-	/* font-family: "Comic Sans MS", cursive, sans-serif; */
+	font-family: "Comic Sans MS", cursive, sans-serif;
 	font-size: 50px;
 	width: 70px;
 	border: none;
@@ -98,7 +97,7 @@ table tr td:last-child {
 }
 
 #replay-btn {
-	/* font-family: "Comic Sans MS", cursive, sans-serif; */
+	font-family: "Comic Sans MS", cursive, sans-serif;
 	position: absolute;
 	left: 50%;
 	margin-left: -60px;

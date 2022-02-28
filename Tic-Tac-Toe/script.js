@@ -1,6 +1,6 @@
 let origBoard;
-let huPlayer = "O";
-let aiPlayer = "X";
+let huPlayer;
+let aiPlayer;
 const winCombos = [
 	[0, 1, 2],
 	[3, 4, 5],
@@ -13,22 +13,8 @@ const winCombos = [
 ];
 
 const cells = document.querySelectorAll(".cell");
-//document.querySelector("#yes").addEventListener("click", yes);
-startGame();
 
-function selectSym(sym) {
-	huPlayer = sym;
-	aiPlayer = sym === "O" ? "X" : "O";
-	origBoard = Array.from(Array(9).keys());
-	// for (let i = 0; i < cells.length; i++) {
-	// 	cells[i].addEventListener("click", turnClick, false);
-	// }
-	// if (aiPlayer === "X") {
-	// 	turn(bestSpot(), aiPlayer);
-	// }
-	document.querySelector(".selectSym").style.display = "none";
-	document.querySelector("#initiator").style.display = "block";
-}
+startGame();
 
 function startGame() {
 	document.querySelector(".endgame").style.display = "none";
@@ -41,6 +27,14 @@ function startGame() {
 		cells[i].style.removeProperty("background-color");
 		cells[i].style.removeProperty("color");
 	}
+}
+
+function selectSym(sym) {
+	huPlayer = sym;
+	aiPlayer = sym === "O" ? "X" : "O";
+	origBoard = Array.from(Array(9).keys());
+	document.querySelector(".selectSym").style.display = "none";
+	document.querySelector("#initiator").style.display = "block";
 }
 
 function no() {
@@ -60,17 +54,10 @@ function yes() {
 	for (let i = 0; i < cells.length; i++) {
 		cells[i].addEventListener("click", turnClick, false);
 	}
-	// if (huPlayer === "X" || huPlayer === "O") {
-	// 	console.log("target id " + square.target.id);
-	// 	turn(square.target.id, huPlayer);
-	// }
 }
 
 function turnClick(square) {
-	console.log("Before if");
-	//cells[square.target.id].removeEventListener("click", turnClick, false);
 	if (typeof origBoard[square.target.id] === "number") {
-		console.log("I entered here", square.target.id);
 		document.getElementById(square.target.id).style.color = "yellow";
 		turn(square.target.id, huPlayer);
 		if (!checkWin(origBoard, huPlayer) && !checkTie())
@@ -107,7 +94,6 @@ function gameOver(gameWon) {
 		cells[i].removeEventListener("click", turnClick, false);
 	}
 	declareWinner(gameWon.player === huPlayer ? "You win!" : "You lose");
-	//document.querySelector("#replay-btn").style.display = "block";
 }
 
 function declareWinner(who) {
@@ -121,7 +107,9 @@ function emptySquares() {
 }
 
 function bestSpot() {
-	return minimax(origBoard, aiPlayer).index;
+	let bestMove = minimax(origBoard, aiPlayer);
+	console.log("U need to play this move ", bestMove);
+	return bestMove.index;
 }
 
 function checkTie() {
@@ -159,9 +147,9 @@ function minimax(newBoard, player) {
 		if (
 			(player === aiPlayer && move.score === 10) ||
 			(player === huPlayer && move.score === -10)
-		)
+		) {
 			return move;
-		else moves.push(move);
+		} else moves.push(move);
 	}
 
 	let bestMove, bestScore;
@@ -182,6 +170,7 @@ function minimax(newBoard, player) {
 			}
 		}
 	}
-
+	console.log("Array of moves ", moves);
+	//console.log("Best move ", moves[bestMove]);
 	return moves[bestMove];
 }
