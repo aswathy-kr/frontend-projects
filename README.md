@@ -13,6 +13,6 @@ Projects featuring HTML, CSS, JS
 
 Projects featuring ReactJS
 
-|  #  | Project                                                                                                          | Live Demo                                                                          |
-| :-: | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| 01  | [Forward-Backward Counter](https://github.com/aswathy-kr/frontend-projects/tree/main/Forward-Backward%20Counter) | [Demo](https://aswathy-kr.github.io/frontend-projects/Forward-Backward%20Counter/) |
+|  #  | Project                                                                                                        | Live Demo                                                      |
+| :-: | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| 01  | [Forward-Backward Counter](https://github.com/aswathy-kr/frontend-projects/tree/main/forward-backward-counter) | [Demo](https://aswathy-kr.github.io/forward-backward-counter/) |
